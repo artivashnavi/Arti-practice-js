@@ -1,0 +1,247 @@
+<p>destructuring of non-primitive</p>
+<pre>
+ let a,b,c,d;
+ [a,b]=[2,5];
+ console.log(a,b)//2 5</pre
+>
+
+<pre>
+ [a,b,c,...d]=[1,2,3,4,5,6,7,8,9];
+ console.log(a)//1
+ console.log(b)//2
+ console.log(c)//3
+console.log(d)//[ 4, 5, 6, 7, 8, 9 ]</pre
+>
+
+<pre>
+let a1,b1,c1,d1;
+ ({a1,b1,c1,...d1}={a1:56,b1:78,c1:89,d1:99,e1:59})
+ console.log(a1,b1,c1,d1);//56 78 89 { d1: 99, e1: 59 }</pre
+>
+
+<pre>
+ let a=[1,2,3,4];
+// let b={name:"hari",age:"56"};
+// console.log(...a);
+// console.log(...b.name,...b.age);</pre
+>
+
+<h1>Execution stack</h1>
+<p>
+    execution stack(call stack) execution stack is also known as "calling stack" is a stack LIFO structure which is used to store all the execution context created during the code execution
+</p>
+
+<pre>
+function a(){
+     console.log("function a");
+     b();
+ }
+
+function b(){
+     console.log("function b");
+     c();
+ }
+ function c(){
+     console.log("function c");
+ }
+ a();</pre
+>
+<p>
+    call stack created first a function call then b then c it will come first "a" above "b" above "c" c b a phir call satck se phle "c "remove hoga uske baad "b" and "c" bez unka work finish
+</p>
+
+<h1>First class function</h1>
+
+<p>
+    First class function a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable. a function can be assigned as an argument t
+</p>
+
+<pre>function firstClass(){
+    console.log("hello  Everyone");
+ }
+ 
+ const temp = function() {
+ console.log("Hello World !!");
+ }
+ temp();
+ <!-- a function can be passed as an argument to  another function a -->
+ 
+ function fun(){
+     return "modhu";
+ }
+ function say(a,b){
+     console.log(a(),b)
+ }
+ say(fun,"hii");</pre>
+
+<h1>closure</h1>
+<p>
+    A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
+</p>
+
+<pre>
+sum function return a funcion itself
+  var sum = function(a){//function expression
+      console.log(a);
+      var c=8;
+      return function(b){
+          console.log(a+b+c);
+      }
+ }
+  var res=sum(3);//sum call
+  res(5);
+ 
+  function outer(){
+      var a=6;
+      function inner(){
+          console.log(a)
+      }
+      return inner;
+  }
+  let res=outer();
+  res();
+ </pre
+>
+<h1>Anonyms function</h1>
+<pre>
+(()=>{
+      console.log("hii");
+  })();</pre
+>
+
+<h1>Explain call(), apply() and, bind() methods</h1>
+<p>
+    these methods is used to invoking function from other objects use it with the data of some other objects
+</p>
+<p>call()- method we pass argument comma seprate</p>
+<p>apply()- method we pass argument as an array</p>
+<p>
+    bind()-in bind it create a new bind function this function will be having the reference of the object passed
+</p>
+
+<pre>
+ const obj1={
+     name:"mohit",
+      age:24
+  }
+  const obj2={
+      name:"Kumar",
+      age:3432
+  }
+  const details=function(course,roll){
+      console.log(`${this.name} ${this.age} ${course} ${roll}`)
+  }
+  details.call(obj1,"English",98);
+  details.call(obj2,"master","jk");
+  details.call(obj1,["Hindi","ji"]);
+  let rs=details.bind(obj1,["Sanskrit"]);
+ 
+  rs();
+  rs("how are you");
+ 
+  rs("how are you my dost");</pre
+>
+
+<h1>prototype</h1>
+<p>
+    are the mechanism by which JavaScript objects inherit features from one another.
+</p>
+<p>
+    Every object in JavaScript has a built-in property, which is called its prototype.
+</p>
+<pre>function f(name,age){
+     this.fname=name
+     this.ages=age
+ }
+ <!-- The JavaScript prototype property allows you to add new properties to object constructors: -->
+ f.prototype.lan="hindi"
+ f.prototype.color="red"
+ const res=new f("harr",87)
+ 
+ console.log(res,res.lan,res.color);
+ console.log(res)
+ </pre>
+
+<h1>promises</h1>
+<p>
+    Promises are used to handle asynchronous operations in JavaScript.
+    <br /> They are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code. <br /> A Promise is in one of these states: //pending: initial state, neither fulfilled nor rejected.
+    <br /> //fulfilled: meaning that the operation was completed successfully. <br /> //rejected: meaning that the operation failed.<br />
+</p>
+
+<pre>
+const promise = new Promise(function(resolve,reject){
+     setTimeout(()=>{
+         // resolve("promise is resolving");
+         reject("promise is rejecting");
+     },1000)
+ } )
+ promise
+   .then((success)=>{console.log(success)})
+   
+   .catch((error)=>{console.log(error)})
+ </pre
+>
+
+<pre>
+1. then()
+ //then() is invoked when a promise is either resolved or rejected.
+ //Parameters:
+ //then() method takes two functions as parameters.
+ //1)First function is executed if promise is resolved and a result is received.
+ //2)Second function is executed if promise is rejected and an error is received. (It is optional and
+ //there is a better way to handle error using .catch() method</pre
+>
+
+<h1>
+    ################################################# ###################################################
+</h1>
+
+<h1>async/await keywords?</h1>
+<pre>
+//The await keyword is used inside the async function to wait for the asynchronous operation.
+ //"async and await make promises easier to write"
+ 
+ //async makes a function return a Promise
+ 
+ //await makes a function wait for a Promise</pre
+>
+
+<pre> let promise1 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+  resolve('Promise resolved')
+  }, 4000);
+  });
+  async function asyncFunc() {
+  wait until the promise resolves
+  let result = await promise1;
+  console.log(result);
+  console.log('hello');
+  }
+  <!-- calling the async function -->
+  asyncFunc()</pre>
+
+<p>
+    A constructor is a special function that creates and initializes an object instance of a class. <br /> In JavaScript, a constructor gets called when an object is created using the new keyword. We have multiple constructor functions like Function constructor
+    for functions, Object constructor
+</p>
+<p>function for objects, Array constructor function for arrays.</p>
+<br />
+<pre>
+ function User (name, age) {
+  this.name = name;
+  this.age = age;
+ }
+  var user1 = new User('Bob', 25);
+  var user2 = new User('Alice', 27);
+  console.log(user1,user2)</pre
+>
+
+<pre>
+//hoisting
+ console.log(my(5,7))//arrow func not hoisted
+ var my = (a, b) =>{ 
+     return a * b;
+ }
+ console.log(my(7,8))</pre
+>
